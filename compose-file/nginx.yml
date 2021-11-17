@@ -1,0 +1,8 @@
+version: '3.6'
+services:
+  nginx-example:
+    image: nginx:latest
+networks:
+  default:
+    name: ${test:-tmp}
+    driver: bridge
