@@ -18,7 +18,7 @@ services:
     
   python:
     image: python:3.9.9-windowsservercore-ltsc2022
-    hostname: ${HOSTNAME:?hostnameerr}
+    hostname: pythonhost
     container_name: ${PCON_NAME?pythonnameerr}
     volumes:
       - ../myapp:/myapp
