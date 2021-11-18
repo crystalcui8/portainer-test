@@ -9,7 +9,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: ${DB_HOST:-mysql}
       WORDPRESS_DB_NAME: ${DB_NAME-wordpress}
-      WORDPRESS_DB_USER: example
+      WORDPRESS_DB_USER: ${DB_USER}
       WORDPRESS_DB_PASSWORD: examplePW
       NEWVAR: ${NEWVAR:?NewvarErr}
     volumes:
