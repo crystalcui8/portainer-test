@@ -1,0 +1,32 @@
+version: "3"
+services:
+  jenkins:
+    image: jenkins/jenkins:${IMAGE_TAG}
+    ports:
+      - 8080:8080
+      - 50000:50000
+    restart: "always"
+    container_name: ${JCON_NAME:-myjenkins}
+    environment:
+      JAVA_OPTS: -Duser.timezone=Asia/Shanghai
+    volumes:
+      - /opt/jenkins/home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+    privileged: true
+    user: ${USER-root}
+    
+  python:
+    image: python:3.9.9-windowsservercore-ltsc2022
+    hostname: ${HOSTNAME:?hostnameerr}
+    container_name: ${PCON_NAME?pythonnameerr}
+    volumes:
+      - ../myapp:/myapp
+      - ../docker:/docker
+    ports:
+      - "5000:5000"
+    environment:
+      - TZ=Asia/Shanghai
+    command: bash /docker/run.sh
+    network_mode: bridge
+    restart: unless-stopped
