@@ -2,8 +2,6 @@ version: "3"
 services:
   message-queue:
     image: nats:nanoserver
-    deploy:
-      endpoint_mode: ${MODE:-dnsrr}
     container_name: ${CON_NAME-mymessage}
     environment:
       JAVA_OPTS: -Duser.timezone=Asia/Shanghai
@@ -14,6 +12,7 @@ services:
     networks:
       - frontend
     deploy:
+      endpoint_mode: ${MODE:-dnsrr
       replicas: 1
       update_config:
         parallelism: 2
