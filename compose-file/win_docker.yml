@@ -5,20 +5,14 @@ services:
     image: nats:nanoserver
     deploy:
       endpoint_mode: ${MODE:-dnsrr}
-    networks:
-      - backend
-  jenkins:
-    image: jenkins/jenkins:jdk11-hotspot-windowsservercore-2019
-    ports:
-      - 8080:8080
-      - 50000:50000
-    restart: "always"
-    container_name: ${JCON_NAME-myjenkins}
+    container_name: ${CON_NAME-mymessage}
     environment:
       JAVA_OPTS: -Duser.timezone=Asia/Shanghai
-      Jenkins_HOST: ${JK_HOST}
-      Jenkins_NAME: ${JK_NAME:?NameErr}
-      Jenkins_USER: ${JK_USER?UserErr}
-      Jenkins_PASSWORD: examplePW
+      MessageQueue_HOST: ${MQ_HOST}
+      MessageQueue_NAME: ${MQ_NAME:?NameErr}
+      MessageQueue_USER: ${MQ_USER?UserErr}
+      MessageQueue_PASSWORD: examplePW
+    networks:
+      - backend
 networks:
   backend:

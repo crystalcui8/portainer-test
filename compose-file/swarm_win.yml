@@ -1,7 +1,16 @@
 version: "3"
 services:
-  redis:
-    image: redis:windowsservercore
+  message-queue:
+    image: nats:nanoserver
+    deploy:
+      endpoint_mode: ${MODE:-dnsrr}
+    container_name: ${CON_NAME-mymessage}
+    environment:
+      JAVA_OPTS: -Duser.timezone=Asia/Shanghai
+      MessageQueue_HOST: ${MQ_HOST}
+      MessageQueue_NAME: ${MQ_NAME:?NameErr}
+      MessageQueue_USER: ${MQ_USER?UserErr}
+      MessageQueue_PASSWORD: examplePW
     networks:
       - frontend
     deploy:
@@ -11,10 +20,5 @@ services:
         delay: ${DELAY:?DelayErr10s}
       restart_policy:
         condition: ${CONDITION}
-    environment:
-      REDIS_HOST: ${RD_HOST:-myhost}
-      REDIS_NAME: ${RD_NAME-myname}
-      REDIS_USER: ${RD_USER?UserErr}
-      REDIS_PASSWORD: examplePW
 networks:
   frontend:
