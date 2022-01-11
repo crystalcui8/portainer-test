@@ -1,0 +1,18 @@
+version: "3.2"
+
+services:
+  message-queue:
+    image: nats:nanoserver
+    deploy:
+      endpoint_mode: dnsrr
+    container_name: mymessage
+    environment:
+      JAVA_OPTS: -Duser.timezone=Asia/Shanghai
+      MessageQueue_HOST: myhost
+      MessageQueue_NAME: myname
+      MessageQueue_USER: myuser
+      MessageQueue_PASSWORD: examplePW
+    networks:
+      - backend
+networks:
+  backend:

@@ -1,0 +1,22 @@
+version: "3"
+services:
+  message-queue:
+    image: nats:nanoserver
+    container_name: mymessage
+    environment:
+      JAVA_OPTS: -Duser.timezone=Asia/Shanghai
+      MessageQueue_HOST: myhost
+      MessageQueue_NAME: myname
+      MessageQueue_USER: myuser
+      MessageQueue_PASSWORD: examplePW
+    networks:
+      - frontend
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+networks:
+  frontend:
