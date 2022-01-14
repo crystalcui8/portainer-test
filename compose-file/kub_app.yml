@@ -18,5 +18,5 @@ spec:
         - name: nginx
           image: nginx:latest
           ports:
-          - containerPort: 90
-          imagePullPolicy: Always
+            - name: http
+              containerPort: 90
