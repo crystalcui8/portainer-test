@@ -1,27 +1,8 @@
 version: '3'
 
 services:
-
-  wordpress:
-    image: wordpress
-    ports:
-      - 8080:80
-    environment:
-      WORDPRESS_DB_HOST: mysql
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: example
-      WORDPRESS_DB_PASSWORD: examplePW
-      NEWVAR: Value
-    volumes:
-      - ./wordpress-data:/var/www/html
-
   example:
-    image: crystalcui8/publictest:lin
+    image: portainertest.azurecr.io/publictest:lin
 
-volumes:
-  mysql-data:
-
-networks:
-  default:
-    name: gittest
-    driver: bridge
+  redis-example:
+    image: redis:latest

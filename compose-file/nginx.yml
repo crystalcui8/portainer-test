@@ -2,3 +2,5 @@ version: '3'
 services:
   nginx-example:
     image: nginx:latest
+    ports:
+      - "8080:8080"
