@@ -4,6 +4,6 @@ services:
     image: nginx:latest
     ports:
       - "8081:80"
-      - "8082:8082"
+      - "8083:8083"
     volumes:
       - ./www:/usr/share/
