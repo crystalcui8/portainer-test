@@ -7,4 +7,3 @@ services:
       - "8083:8083"
     volumes:
       - ./www:/usr/share/
-      - /dev/sda1:/test
